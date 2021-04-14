@@ -1,0 +1,12 @@
+.pages {
+    color: black;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.selected_page {
+    color: black;
+    font-weight: bold;
+    margin-right: 5px;
+    cursor: pointer;
+}

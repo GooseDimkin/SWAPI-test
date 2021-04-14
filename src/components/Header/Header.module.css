@@ -1,0 +1,16 @@
+.header {
+    background-color: white;
+    border-bottom: 1px solid #DCE1E6;
+}
+
+.avatar {
+    border-radius: 100%;
+    padding: 15px;
+}
+
+.name {
+    position: absolute;
+    margin-left: 75px;
+    margin-top: 15px;
+    font-weight: 600;
+}

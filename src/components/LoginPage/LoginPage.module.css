@@ -1,0 +1,16 @@
+.loginButton {
+    background-color: rgb(194, 224, 250);
+    padding: 50px 15px 15px 15px;
+    width: 270px;
+    height: 110px;
+    margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.welcome {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 25px;
+}

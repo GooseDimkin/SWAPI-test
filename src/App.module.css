@@ -1,0 +1,12 @@
+html {
+  overflow-y: scroll;
+}
+
+body {
+  background-color: #EDEEF0;
+}
+
+.content {
+  max-width: 1000px;
+  margin: 0 auto;
+}

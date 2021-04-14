@@ -1,0 +1,32 @@
+.pages {
+    color: black;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.selected_page {
+    color: black;
+    font-weight: bold;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.userElement {
+    background-color: white;
+    margin-top: 15px;
+    padding: 15px;
+}
+
+.userElement:hover {
+    cursor: pointer;
+    background-color: rgb(250, 247, 231);
+}
+
+.name {
+    font-weight: bold;
+}
+
+.navlink {
+    color: rgb(26, 26, 26);
+    text-decoration: none;
+}

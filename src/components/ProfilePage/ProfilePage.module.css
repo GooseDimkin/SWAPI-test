@@ -1,0 +1,35 @@
+.button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.nav {
+    background-color:rgb(202, 202, 202);
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    border-radius: 5px;
+}
+
+.nav:hover {
+    cursor: pointer;
+    background-color:rgb(177, 177, 177);
+}
+
+.main_section {
+    background-color:rgb(202, 202, 202);
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+}
+
+.label_section {
+   margin-right: 20px;
+   margin-left: 425px;
+}
+
+.label {
+    margin-right: 20px;
+    font-weight: bold;
+}
