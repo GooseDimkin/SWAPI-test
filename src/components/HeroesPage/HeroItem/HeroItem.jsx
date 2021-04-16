@@ -1,9 +1,9 @@
-import style from './UserItem.module.css';
+import style from './HeroItem.module.css';
 import React, {useState} from 'react';
-import Preloader from './../../common/Preloader/Preloader';
+import Preloader from '../../common/Preloader/Preloader';
 import {NavLink} from 'react-router-dom';
 
-function UserItem(props) {
+function HeroItem(props) {
     const [searchTerm, setSearchTerm] = useState('')
     return(
         <div>
@@ -34,4 +34,4 @@ function UserItem(props) {
     );
 }
 
-export default UserItem;
+export default HeroItem;

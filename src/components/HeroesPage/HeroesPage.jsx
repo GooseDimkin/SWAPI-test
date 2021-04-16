@@ -1,14 +1,14 @@
-import style from './UsersPage.module.css';
+import style from './HeroesPage.module.css';
 
-import Header from './../Header/Header';
+import Header from '../Header/Header';
 
 import { connect } from 'react-redux';
 import React, {useState} from 'react';
 
-import {setUsersThunkCreator, getPageAC, showLoadingAC} from './../../Redux/reducers/usersReducer';
-import UserItem from './UserItem/UserItem';
+import {setUsersThunkCreator, getPageAC, showLoadingAC} from '../../Redux/reducers/usersReducer';
+import HeroItem from './HeroItem/HeroItem';
 
-import Preloader from './../common/Preloader/Preloader';
+import Preloader from '../common/Preloader/Preloader';
 
 function UsersPage(props) {
     let pagesItem = props.showPages(props.totalCount, props.count).map(p => <span onClick={() => props.openPage(p)} className={props.pageNumber === p ? style.selected_page : style.pages}>{p}</span>);
@@ -17,12 +17,12 @@ function UsersPage(props) {
             <Header headerInfo={props.headerInfo}/>
             <div>{pagesItem}</div>
             {props.isLoading ? <Preloader/> : 
-            <UserItem users={props.users} />}
+            <HeroItem users={props.users} />}
         </div>
     );
 }
 
-class UsersPageAPI extends React.Component {    
+class HeroesPageAPI extends React.Component {    
     componentDidMount() {
         this.props.setUsersThunkCreator(this.props.count, this.props.pageNumber);
     }
@@ -59,6 +59,6 @@ const mapStateToProps = (state) => {
     };
 }
 
-let UsersPageContainer = connect(mapStateToProps, {setUsersThunkCreator, getPageAC, showLoadingAC})(UsersPageAPI);
+let HeroesPageContainer = connect(mapStateToProps, {setUsersThunkCreator, getPageAC, showLoadingAC})(HeroesPageAPI);
 
-export default UsersPageContainer;
+export default HeroesPageContainer;

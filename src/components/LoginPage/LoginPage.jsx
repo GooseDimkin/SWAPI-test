@@ -3,11 +3,11 @@ import noPicture from './../common/assets/no-picture.webp';
 
 import React from 'react';
 import FacebookLogin from 'react-facebook-login'; 
-import UsersPage from './../UsersPage/UsersPage';
 import Preloader from './../common/Preloader/Preloader';
 
 import {getUserDataAC} from '../../Redux/reducers/facebookReducer';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
 function LoginPage(props) {
     return(
@@ -28,7 +28,7 @@ class LoginPageAPI extends React.Component {
 
         if(this.props.isLogginedIn) {
             fbContent = (
-                <UsersPage/>
+                <Redirect to='/heroes'/>
             );
         }
         else {
