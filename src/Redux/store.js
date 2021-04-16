@@ -1,13 +1,13 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import facebookReducer from './reducers/facebookReducer';
-import usersReducer from './reducers/usersReducer';
+import heroesReducer from './reducers/heroesReducer';
 import profileReducer from './reducers/profileReducer';
 
 import thunk from 'redux-thunk';
 
 let reducers = combineReducers({
     facebookData: facebookReducer,
-    usersData: usersReducer,
+    heroesData: heroesReducer,
     profileData: profileReducer
 });
 

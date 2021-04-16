@@ -1,6 +1,6 @@
-import {usersAPI} from './../../api/api';
+import {heroesAPI} from './../../api/api';
 
-const GET_USERS = 'GET_USERS';
+const GET_HEROES = 'GET_HEROES';
 const SHOW_LOADING = 'SHOW_LOADING';
 const GET_PAGE = 'GET_PAGE';
 const GET_HOMEWORLD = 'GET_HOMEWORLD';
@@ -11,16 +11,17 @@ let defaultState = ({
     people: [],
     pageNumber: 1,
     isLoading: true,
-    homeworldNames: []
+    homeworldNames: [],
+    homeworldsArray: []
 });
 
-let usersReducer = (state = defaultState, action) => {
+let heroesReducer = (state = defaultState, action) => {
     switch(action.type) {
-        case GET_USERS: 
+        case GET_HEROES: 
             return {
                 ...state,
-                people: action.usersData.results,
-                totalCount: action.usersData.count,
+                people: action.heroesData.results,
+                totalCount: action.heroesData.count,
                 isLoading: false
             }
 
@@ -55,26 +56,26 @@ export const showLoadingAC = () => {
     return {type: SHOW_LOADING}
 }
 
-export const getUsersAC = (usersData) => {
-    return {type: GET_USERS, usersData: usersData}
+export const getHeroesAC = (heroesData) => {
+    return {type: GET_HEROES, heroesData: heroesData}
 }
 
 export const getHomeworldAC = (homeworldName) => {
     return {type: GET_HOMEWORLD, homeworldName: homeworldName.name}
 }
 
-export const setUsersThunkCreator = (count, pageNumber) => {
+export const setHeroesThunkCreator = (count, pageNumber) => {
     return (dispatch) => {
-        usersAPI.getUsers(count, pageNumber)
-        .then(data => dispatch(getUsersAC(data)));
+        heroesAPI.getHeroes(count, pageNumber)
+        .then(data => dispatch(getHeroesAC(data)));
     }
 }
 
-export const setHomeworldThunkCreator = (request, userID) => {
+export const setHomeworldThunkCreator = (request) => {
     return (dispatch) => {
-        usersAPI.getHomeworld(request, userID)
+        heroesAPI.getHomeworld(request)
         .then(data => dispatch(getHomeworldAC(data)));
     }
 }
 
-export default usersReducer;
+export default heroesReducer;

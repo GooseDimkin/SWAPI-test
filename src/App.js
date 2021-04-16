@@ -13,7 +13,7 @@ function App(props) {
         <div className={style.content}>
           <Route path='' render={()=> <Redirect to='/login'/>}/>
           <Route path='/login' render={()=> <LoginPageContainer/>}/>
-          <Route path='/profile/:userID' render={()=> <ProfilePageContainer />} />
+          <Route path='/profile/:heroID' render={()=> <ProfilePageContainer />} />
           <Route path='/heroes' render={()=> <HeroesPage/>}/>
         </div>
       </body>

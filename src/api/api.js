@@ -5,19 +5,18 @@ const instance = axios.create({
     withCredentials: false
 });
 
-export const usersAPI = {
-    getUsers: (count, pageNumber) => {
+export const heroesAPI = {
+    getHeroes: (count, pageNumber) => {
         return instance.get('people?page=' + pageNumber)
         .then(response => response.data);
     },
-    getUserProfile: (userId) => {
-        return instance.get('people/' + userId)
+    getHeroProfile: (heroId) => {
+        return instance.get('people/' + heroId)
         .then(response => response.data);
     },
-    getHomeworld: (request, userID) => {
-        debugger;
+    getHomeworld: (request) => {
         return (
-            axios.get(request[userID - 1])
+            axios.get(request)
             .then(response => response.data)
         );
     },
