@@ -4,8 +4,8 @@ const GET_HEROES = 'GET_HEROES';
 const SHOW_LOADING = 'SHOW_LOADING';
 const GET_PAGE = 'GET_PAGE';
 const GET_HOMEWORLD = 'GET_HOMEWORLD';
-const GET_VEHICLE = 'GET_VEHICLE';
-const CHECK = 'CHECK';
+const GET_VEGICLE = 'GET_VEGICLE';
+const GET_FILM = 'GET_FILM';
 
 let defaultState = ({
     totalCount: null,
@@ -13,10 +13,9 @@ let defaultState = ({
     people: [],
     pageNumber: 1,
     isLoading: true,
-    homeworldName: [],
-    vehiclesName: [],
-    vehiclesModel: [],
-    checkStatus: null
+    homeworldsNames: [],
+    vehiclesNames: [],
+    filmTitles: []
 });
 
 let heroesReducer = (state = defaultState, action) => {
@@ -44,20 +43,19 @@ let heroesReducer = (state = defaultState, action) => {
         case GET_HOMEWORLD:
             return {
                 ...state,
-                homeworldName: [action.homeworldName]
+                homeworldsNames: action.homeworldsNames
             }
 
-        case GET_VEHICLE:
+        case GET_VEGICLE:
             return {
                 ...state,
-                vehiclesName: [action.vehiclesName],
-                vehiclesModel: [action.vehiclesModel]
+                vehiclesNames: action.vehiclesNames
             }
-
-        case CHECK:
+        
+        case GET_FILM: 
             return {
                 ...state,
-                checkStatus: action.status
+                filmTitles: action.filmTitles
             }
 
         default: 
@@ -77,47 +75,22 @@ export const getHeroesAC = (heroesData) => {
     return {type: GET_HEROES, heroesData: heroesData}
 }
 
-export const getHomeworldAC = (homeworldName) => {
-    return {type: GET_HOMEWORLD, homeworldName: homeworldName.name}
+export const setHomeworldAC = (homeworldsNames) => {
+    return {type: GET_HOMEWORLD, homeworldsNames: homeworldsNames}
 }
 
-export const getVehiclesAC = (vehiclesName) => {
-    return {type: GET_VEHICLE, vehiclesName: vehiclesName.name, vehiclesModel: vehiclesName.model}
+export const setVehiclesAC = (vehiclesNames) => {
+    return {type: GET_VEGICLE, vehiclesNames: vehiclesNames}
 }
 
-const check = (status) => {
-    return {type: CHECK, status: status}
-}
-
-export const checkThunkCreator = (status) => {
-    return (dispatch) => dispatch(check(status));
+export const setFilmAC = (filmTitles) => {
+    return {type: GET_FILM, filmTitles: filmTitles}
 }
 
 export const setHeroesThunkCreator = (count, pageNumber) => {
     return (dispatch) => {
         heroesAPI.getHeroes(count, pageNumber)
         .then(data => dispatch(getHeroesAC(data)));
-    }
-}
-
-export const setHomeworldThunkCreator = (request) => {
-    return (dispatch) => {
-        heroesAPI.getHomeworld(request)
-        .then(data => dispatch(getHomeworldAC(data)));
-    }
-}
-
-export const setOneVehicleThunkCreator = (request) => {
-    return (dispatch) => {
-        heroesAPI.getVehicles(request)
-        .then(data => dispatch(getVehiclesAC(data)));
-    }
-}
-
-export const setMoreVehiclesThunkCreator = (request, i) => {
-    return (dispatch) => {
-        heroesAPI.getVehicles(request[i])
-        .then(data => dispatch(getVehiclesAC(data)))
     }
 }
 

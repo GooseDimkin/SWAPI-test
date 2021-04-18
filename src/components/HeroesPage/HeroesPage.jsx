@@ -3,11 +3,10 @@ import style from './HeroesPage.module.css';
 import Header from '../Header/Header';
 
 import { connect } from 'react-redux';
-import React, {useState} from 'react';
+import React from 'react';
 
-import {checkThunkCreator, setOneVehicleThunkCreator, setMoreVehiclesThunkCreator, 
-    setHomeworldThunkCreator, setHeroesThunkCreator, getPageAC, showLoadingAC} from '../../Redux/reducers/heroesReducer';
-import HeroItem from './HeroItem/HeroItem';
+import {setHeroesThunkCreator, getPageAC, showLoadingAC} from '../../Redux/reducers/heroesReducer';
+import HeroItemContainer from './HeroItem/HeroItem';
 
 import Preloader from '../common/Preloader/Preloader';
 
@@ -21,12 +20,7 @@ function HeroesPage(props) {
             <Header headerInfo={props.headerInfo}/>
             <div>{pagesItem}</div>
             {props.isLoading ? <Preloader/> : 
-            <HeroItem 
-            checkThunkCreator={props.checkThunkCreator} 
-            setOneVehicleThunkCreator={props.setOneVehicleThunkCreator} 
-            setMoreVehiclesThunkCreator={props.setMoreVehiclesThunkCreator} 
-            setHomeworldThunkCreator={props.setHomeworldThunkCreator} 
-            heroes={props.heroes} />}
+            <HeroItemContainer />}
         </div>
     );
 }
@@ -54,10 +48,6 @@ class HeroesPageAPI extends React.Component {
 
     render() {
         return <HeroesPage 
-        checkThunkCreator={this.props.checkThunkCreator} 
-        setOneVehicleThunkCreator={this.props.setOneVehicleThunkCreator} 
-        setMoreVehiclesThunkCreator={this.props.setMoreVehiclesThunkCreator} 
-        setHomeworldThunkCreator={this.props.setHomeworldThunkCreator} 
         isLoading={this.props.isLoading} 
         pageNumber={this.props.pageNumber} 
         count={this.props.count} 
@@ -81,10 +71,6 @@ const mapStateToProps = (state) => {
 }
 
 let HeroesPageContainer = connect(mapStateToProps, {
-    checkThunkCreator, 
-    setOneVehicleThunkCreator, 
-    setMoreVehiclesThunkCreator, 
-    setHomeworldThunkCreator, 
     setHeroesThunkCreator, 
     getPageAC, 
     showLoadingAC})
