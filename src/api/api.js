@@ -20,4 +20,10 @@ export const heroesAPI = {
             .then(response => response.data)
         );
     },
+    getVehicles: (request) => {
+        return (
+            axios.get(request)
+            .then(response => response.data)
+        );
+    }
 };

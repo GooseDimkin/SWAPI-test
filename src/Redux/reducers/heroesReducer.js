@@ -4,6 +4,8 @@ const GET_HEROES = 'GET_HEROES';
 const SHOW_LOADING = 'SHOW_LOADING';
 const GET_PAGE = 'GET_PAGE';
 const GET_HOMEWORLD = 'GET_HOMEWORLD';
+const GET_VEHICLE = 'GET_VEHICLE';
+const CHECK = 'CHECK';
 
 let defaultState = ({
     totalCount: null,
@@ -11,8 +13,10 @@ let defaultState = ({
     people: [],
     pageNumber: 1,
     isLoading: true,
-    homeworldNames: [],
-    homeworldsArray: []
+    homeworldName: [],
+    vehiclesName: [],
+    vehiclesModel: [],
+    checkStatus: null
 });
 
 let heroesReducer = (state = defaultState, action) => {
@@ -40,7 +44,20 @@ let heroesReducer = (state = defaultState, action) => {
         case GET_HOMEWORLD:
             return {
                 ...state,
-                homeworldNames: [action.homeworldName]
+                homeworldName: [action.homeworldName]
+            }
+
+        case GET_VEHICLE:
+            return {
+                ...state,
+                vehiclesName: [action.vehiclesName],
+                vehiclesModel: [action.vehiclesModel]
+            }
+
+        case CHECK:
+            return {
+                ...state,
+                checkStatus: action.status
             }
 
         default: 
@@ -64,6 +81,18 @@ export const getHomeworldAC = (homeworldName) => {
     return {type: GET_HOMEWORLD, homeworldName: homeworldName.name}
 }
 
+export const getVehiclesAC = (vehiclesName) => {
+    return {type: GET_VEHICLE, vehiclesName: vehiclesName.name, vehiclesModel: vehiclesName.model}
+}
+
+const check = (status) => {
+    return {type: CHECK, status: status}
+}
+
+export const checkThunkCreator = (status) => {
+    return (dispatch) => dispatch(check(status));
+}
+
 export const setHeroesThunkCreator = (count, pageNumber) => {
     return (dispatch) => {
         heroesAPI.getHeroes(count, pageNumber)
@@ -75,6 +104,20 @@ export const setHomeworldThunkCreator = (request) => {
     return (dispatch) => {
         heroesAPI.getHomeworld(request)
         .then(data => dispatch(getHomeworldAC(data)));
+    }
+}
+
+export const setOneVehicleThunkCreator = (request) => {
+    return (dispatch) => {
+        heroesAPI.getVehicles(request)
+        .then(data => dispatch(getVehiclesAC(data)));
+    }
+}
+
+export const setMoreVehiclesThunkCreator = (request, i) => {
+    return (dispatch) => {
+        heroesAPI.getVehicles(request[i])
+        .then(data => dispatch(getVehiclesAC(data)))
     }
 }
 
